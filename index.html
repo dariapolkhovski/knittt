@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра "Стоп!" - Начало</title>
+    <title>Игра с категориями</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="startArea">
-        <h1>Игра "Стоп!"</h1>
-        <button id="startButton">Начать игру</button>
-        <div id="randomLetter" class="hidden">
-            <h2>Случайная буква: <span id="letter"></span></h2>
-            <button id="continueButton">Продолжить</button>
-        </div>
+
+<div class="container">
+    <h1>Игра с категориями</h1>
+    <p>Нажми кнопку, чтобы выбрать случайную букву и категории!</p>
+    <button class="button" onclick="startGame()">Начать игру</button>
+    
+    <div class="output">
+        <p><strong>Категории:</strong></p>
+        <ul id="category-list"></ul>
+        <p><strong>Буква:</strong> <span id="random-letter"></span></p>
+        <div id="answer-fields"></div> <!-- Новое место для полей ответов -->
     </div>
+</div>
 
-    <script>
-        document.getElementById('startButton').onclick = () => {
-            const letter = getRandomLetter();
-            document.getElementById('letter').innerText = letter;
-            document.getElementById('randomLetter').classList.remove('hidden');
-        };
+<script src="script.js"></script>
 
-        document.getElementById('continueButton').onclick = () => {
-            const letter = document.getElementById('letter').innerText;
-            localStorage.setItem('randomLetter', letter);
-            window.location.href = 'game.html';
-        };
-
-        function getRandomLetter() {
-            const letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".split('');
-            return letters[Math.floor(Math.random() * letters.length)];
-        }
-    </script>
 </body>
 </html>
