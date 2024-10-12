@@ -97,22 +97,20 @@ function getRandomLetter() {
 function startGame() {
     // Очистка предыдущего результата
     document.getElementById('category-list').innerHTML = '';
-    document.getElementById('answer-fields').innerHTML = ''; // Очистка предыдущих полей ответов
+    const answersDiv = document.getElementById('answers');
+    answersDiv.innerHTML = ''; // Очистка предыдущих ответов
     
     // Получаем случайные категории
     const randomCategories = getRandomCategories();
     randomCategories.forEach((category, index) => {
         const li = document.createElement('li');
         li.textContent = category;
-
-        // Создание поля для ввода ответа
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = Ответ для ${category};
-        input.id = answer-${index};
-
         document.getElementById('category-list').appendChild(li);
-        document.getElementById('answer-fields').appendChild(input);
+
+        // Создаем поле для ответов
+        const answerField = document.createElement('div');
+        answerField.innerHTML = <strong>${index + 1}. ${category}</strong> <input type="text" placeholder="Ответ...">;
+        answersDiv.appendChild(answerField);
     });
 
     // Получаем случайную букву
