@@ -72,33 +72,32 @@ const categories = [
     "Свадебные вещи"
 ];
 
+// Define answers for each category and letter
 const answers = {
-    // Add your answers here, similar to the previous examples for each category and letter.
+    "Напитки": {
+        "А": ["Айран", "Агуша"],
+        "Б": ["Боржоми", "Бира"],
+        "В": ["Вода", "Вино"],
+        // Add more letters...
+    },
+    "Популярная еда в России": {
+        "А": ["Азу", "Арбуз"],
+        "Б": ["Борщ", "Блины"],
+        // Add more letters...
+    },
+    // Add remaining categories with answers...
 };
 
-let currentLetter;
-let currentCategories = [];
-
-document.getElementById('startButton').onclick = startGame;
-document.getElementById('submitButton').onclick = submitRound;
-
-function startGame() {
-    document.getElementById('startArea').classList.add('hidden');
+document.addEventListener("DOMContentLoaded", () => {
+    const letter = localStorage.getItem('randomLetter');
+    document.getElementById('letter').innerText = letter;
     document.getElementById('gameArea').classList.remove('hidden');
 
-    currentLetter = getRandomLetter();
-    document.getElementById('letter').innerText = currentLetter;
-
-    currentCategories = getRandomCategories(currentLetter);
+    const currentCategories = getRandomCategories(letter);
     displayCategories(currentCategories);
 
     startTimer(60); // Start a 60-second timer
-}
-
-function getRandomLetter() {
-    const letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".split('');
-    return letters[Math.floor(Math.random() * letters.length)];
-}
+});
 
 function getRandomCategories(letter) {
     return categories.filter(category => {
@@ -107,37 +106,46 @@ function getRandomCategories(letter) {
 }
 
 function displayCategories(categories) {
-    const categoriesList = document.getElementById('categories');
-    categoriesList.innerHTML = '';
+    const categoriesDiv = document.getElementById('categories');
+    categoriesDiv.innerHTML = '';
     categories.forEach(category => {
-        const listItem = document.createElement('li');
-        listItem.innerText = category;
-        categoriesList.appendChild(listItem);
+        const inputField = <label>${category}: <input type="text" class="answerInput" data-category="${category}"></label><br>;
+        categoriesDiv.innerHTML += inputField;
     });
-}
-
-function submitRound() {
-    const answersDiv = document.getElementById('answers');
-    answersDiv.innerHTML = <h2>Ответы:</h2>;
-    currentCategories.forEach(category => {
-        const categoryAnswers = answers[category][currentLetter] || [];
-        answersDiv.innerHTML += <p>${category}: ${categoryAnswers.join(', ')}</p>;
-    });
-    answersDiv.classList.remove('hidden');
 }
 
 function startTimer(duration) {
-    let timer = duration;
+    let timerDisplay = duration;
     const timeDisplay = document.getElementById('time');
 
-    const countdown = setInterval(() => {
-        timeDisplay.innerText = timer;
-        timer--;
+    const timer = setInterval(() => {
+        timeDisplay.innerText = timerDisplay;
+        timerDisplay--;
 
-        if (timer < 0) {
-            clearInterval(countdown);
+        if (timerDisplay < 0) {
+            clearInterval(timer);
             alert("Время вышло!");
             submitRound();
         }
     }, 1000);
+
+    document.getElementById('submitButton').onclick = () => {
+        clearInterval(timer);
+        submitRound();
+    };
+}
+
+function submitRound() {
+    const answerElements = document.querySelectorAll('.answerInput');
+    const answersDiv = document.getElementById('answers');
+    answersDiv.innerHTML = <h2>Ответы:</h2>;
+    
+    answerElements.forEach(input => {
+        const userAnswer = input.value;
+        const category = input.dataset.category;
+        const correctAnswers = answers[category][document.getElementById('letter').innerText] || [];
+        
+        answersDiv.innerHTML += <p>${category}: ${userAnswer} - ${correctAnswers.includes(userAnswer) ? 'Правильно' : 'Неправильно'}</p>;
+    });
+    answersDiv.classList.remove('hidden');
 }
