@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Stop Game</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="startArea">
-        <button id="startGame">Начать игру</button>
+        <h1>Игра "Стоп!"</h1>
+        <button id="startButton">Начать игру</button>
     </div>
     <div id="gameArea" class="hidden">
-        <h2>Категории: <span id="categories"></span></h2>
         <h2>Буква: <span id="letter"></span></h2>
-        <h2>Ответы: <span id="answers"></span></h2>
-        <h2>Осталось времени: <span id="time"></span></h2>
-        <button id="nextRound">Следующий раунд</button>
+        <h2>Категории:</h2>
+        <ul id="categories"></ul>
+        <h2>Осталось времени: <span id="time"></span> сек</h2>
+        <button id="submitButton">Завершить раунд</button>
+        <div id="answers" class="hidden"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
