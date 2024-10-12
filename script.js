@@ -1,3 +1,4 @@
+// Список категорий
 const categories = [
     "Напитки",
     "Популярная еда в России",
@@ -6,12 +7,12 @@ const categories = [
     "Специи, приятности, приправы",
     "Фрукты, ягоды, овощи",
     "Что в холодильнике",
-    "Завтра будет…",
-    "Лучшие друзья никогда не…",
-    "Мой начальник …",
-    "Моя собака…",
-    "Пахнет как…",
-    "Я чувствую себя..",
+    "Завтра будет...",
+    "Лучшие друзья никогда не...",
+    "Мой начальник...",
+    "Моя собака...",
+    "Пахнет как...",
+    "Я чувствую себя...",
     "Известные кинофранзы",
     "Мультфильмы и мультсериалы",
     "Реалити шоу",
@@ -25,7 +26,7 @@ const categories = [
     "Столицы",
     "Страны",
     "Типично русские вещи",
-    "Школьные предметы и занятия",
+    "Школьные предметы и занятые",
     "Языки",
     "Вещи из космоса",
     "Млекопитающие",
@@ -34,7 +35,7 @@ const categories = [
     "Птицы",
     "Рыбы",
     "Цветы",
-    "Части человеческого тела",
+    "Части человеческого тело",
     "Элементы периодической таблицы",
     "Музыкальные инструменты",
     "Актеры и актрисы",
@@ -60,7 +61,7 @@ const categories = [
     "Слова с удвоенными согласными",
     "Виды спорта",
     "Вещи в ванной",
-    "Вещи которые висят на стене",
+    "Вещи которые вещают на стену",
     "Вещи которые кладут в карман",
     "Вещи, которые обычно зеленые",
     "Вещи, которые обычно красные",
@@ -69,80 +70,52 @@ const categories = [
     "Липкие вещи",
     "Любовь - какая?",
     "Романтические вещи",
-    "Свадебные вещи"
+    "Свадебные вещи",
 ];
 
-const answers = {
-    "Напитки": {
-        "А": ["Айран", "Агуша"],
-        "Б": ["Боржоми", "Бира"],
-        "В": ["Вода", "Вино"],
-    },
-    "Популярная еда в России": {
-        "А": ["Азу", "Арбуз"],
-        "Б": ["Борщ", "Блины"],
-    },
-    // Add remaining categories with answers...
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-    const letter = localStorage.getItem('randomLetter');
-    document.getElementById('letter').innerText = letter;
-    document.getElementById('gameArea').classList.remove('hidden');
-
-    const currentCategories = getRandomCategories(letter);
-    displayCategories(currentCategories);
-
-    startTimer(60); // Start a 60-second timer
-});
-
-function getRandomCategories(letter) {
-    return categories.filter(category => {
-        return answers[category] && answers[category][letter] && answers[category][letter].length > 0;
-    }).sort(() => Math.random() - 0.5).slice(0, 5); // Randomize and take 5 categories
-}
-
-function displayCategories(categories) {
-    const categoriesDiv = document.getElementById('categories');
-    categoriesDiv.innerHTML = '';
-    categories.forEach(category => {
-        const inputField = <label>${category}: <input type="text" class="answerInput" data-category="${category}"></label><br>;
-        categoriesDiv.innerHTML += inputField;
-    });
-}
-
-function startTimer(duration) {
-    let timerDisplay = duration;
-    const timeDisplay = document.getElementById('time');
-
-    const timer = setInterval(() => {
-        timeDisplay.innerText = timerDisplay;
-        timerDisplay--;
-
-        if (timerDisplay < 0) {
-            clearInterval(timer);
-            alert("Время вышло!");
-            submitRound();
+// Функция для выбора случайных категорий
+function getRandomCategories() {
+    let randomCategories = [];
+    while (randomCategories.length < 5) {
+        const randomIndex = Math.floor(Math.random() * categories.length);
+        const randomCategory = categories[randomIndex];
+        if (!randomCategories.includes(randomCategory)) {
+            randomCategories.push(randomCategory);
         }
-    }, 1000);
-
-    document.getElementById('submitButton').onclick = () => {
-        clearInterval(timer);
-        submitRound();
-    };
+    }
+    return randomCategories;
 }
 
-function submitRound() {
-    const answerElements = document.querySelectorAll('.answerInput');
-    const answersDiv = document.getElementById('answers');
-    answersDiv.innerHTML = <h2>Ответы:</h2>;
+// Функция для выбора случайной буквы
+function getRandomLetter() {
+    const letters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ';
+    const randomIndex = Math.floor(Math.random() * letters.length);
+    return letters[randomIndex];
+}
+
+// Функция для начала игры
+function startGame() {
+    // Очистка предыдущего результата
+    document.getElementById('category-list').innerHTML = '';
+    document.getElementById('answer-fields').innerHTML = ''; // Очистка предыдущих полей ответов
     
-    answerElements.forEach(input => {
-        const userAnswer = input.value;
-        const category = input.dataset.category;
-        const correctAnswers = answers[category][document.getElementById('letter').innerText] || [];
-        
-        answersDiv.innerHTML += <p>${category}: ${userAnswer} - ${correctAnswers.includes(userAnswer) ? 'Правильно' : 'Неправильно'}</p>;
+    // Получаем случайные категории
+    const randomCategories = getRandomCategories();
+    randomCategories.forEach((category, index) => {
+        const li = document.createElement('li');
+        li.textContent = category;
+
+        // Создание поля для ввода ответа
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = Ответ для ${category};
+        input.id = answer-${index};
+
+        document.getElementById('category-list').appendChild(li);
+        document.getElementById('answer-fields').appendChild(input);
     });
-    answersDiv.classList.remove('hidden');
+
+    // Получаем случайную букву
+    const randomLetter = getRandomLetter();
+    document.getElementById('random-letter').textContent = randomLetter;
 }
