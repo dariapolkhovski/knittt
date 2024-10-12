@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Игра с категориями</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Css/стайл.css"> <!-- Указываем путь к CSS -->
 </head>
 <body>
 
@@ -17,15 +17,18 @@
         <p><strong>Категории:</strong></p>
         <ul id="category-list"></ul>
         <p><strong>Буква:</strong> <span id="random-letter"></span></p>
-    </div>
-    
-    <div id="answers-section" style="display:none;">
         <p><strong>Ответы:</strong></p>
-        <ol id="answers-list"></ol>
+        <ul id="answer-list">
+            <li>Категория 1: <input type="text" id="answer-1" placeholder="Ответ"></li>
+            <li>Категория 2: <input type="text" id="answer-2" placeholder="Ответ"></li>
+            <li>Категория 3: <input type="text" id="answer-3" placeholder="Ответ"></li>
+            <li>Категория 4: <input type="text" id="answer-4" placeholder="Ответ"></li>
+            <li>Категория 5: <input type="text" id="answer-5" placeholder="Ответ"></li>
+        </ul>
     </div>
 </div>
 
-<script src="script.js"></script>
+<script src="../Js/скрипт.js"></script> <!-- Указываем путь к JS -->
 
 </body>
 </html>
