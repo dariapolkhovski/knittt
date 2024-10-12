@@ -72,18 +72,15 @@ const categories = [
     "Свадебные вещи"
 ];
 
-// Define answers for each category and letter
 const answers = {
     "Напитки": {
         "А": ["Айран", "Агуша"],
         "Б": ["Боржоми", "Бира"],
         "В": ["Вода", "Вино"],
-        // Add more letters...
     },
     "Популярная еда в России": {
         "А": ["Азу", "Арбуз"],
         "Б": ["Борщ", "Блины"],
-        // Add more letters...
     },
     // Add remaining categories with answers...
 };
