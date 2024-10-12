@@ -61,7 +61,7 @@ const categories = [
     "Слова с удвоенными согласными",
     "Виды спорта",
     "Вещи в ванной",
-    "Вещи которые висят на стене",
+    "Вещи которые вещают на стену",
     "Вещи которые кладут в карман",
     "Вещи, которые обычно зеленые",
     "Вещи, которые обычно красные",
@@ -97,21 +97,19 @@ function getRandomLetter() {
 function startGame() {
     // Очистка предыдущего результата
     document.getElementById('category-list').innerHTML = '';
-    const answerFields = document.getElementById('answer-fields');
-    answerFields.innerHTML = ''; // Очистка предыдущих ответов
-
+    document.getElementById('answer-list').innerHTML = '';
+    
     // Получаем случайные категории
     const randomCategories = getRandomCategories();
     randomCategories.forEach((category, index) => {
         const li = document.createElement('li');
         li.textContent = category;
         document.getElementById('category-list').appendChild(li);
-
-        // Создаем поле для ответа
-        const answerInput = document.createElement('input');
-        answerInput.placeholder = Ответ для категории ${index + 1};
-        answerInput.setAttribute('data-category', category);
-        answerFields.appendChild(answerInput);
+        
+        const answerLi = document.createElement('li');
+        answerLi.textContent = `Ответ для категории "${category}": `;
+        answerLi.innerHTML += <input type="text" placeholder="Введите ответ" />;
+        document.getElementById('answer-list').appendChild(answerLi);
     });
 
     // Получаем случайную букву
