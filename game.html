@@ -3,36 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра "Стоп!" - Начало</title>
     <link rel="stylesheet" href="style.css">
+    <title>Игра "Стоп!" - Игра</title>
 </head>
 <body>
-    <div id="startArea">
-        <h1>Игра "Стоп!"</h1>
-        <button id="startButton">Начать игру</button>
-        <div id="randomLetter" class="hidden">
-            <h2>Случайная буква: <span id="letter"></span></h2>
-            <button id="continueButton">Продолжить</button>
-        </div>
+    <div id="gameArea" class="hidden">
+        <h2>Буква: <span id="letter"></span></h2>
+        <h2>Категории:</h2>
+        <div id="categories"></div>
+        <h2>Осталось времени: <span id="time"></span> сек</h2>
+        <button id="submitButton">Завершить раунд</button>
+        <div id="answers" class="hidden"></div>
     </div>
 
-    <script>
-        document.getElementById('startButton').onclick = () => {
-            const letter = getRandomLetter();
-            document.getElementById('letter').innerText = letter;
-            document.getElementById('randomLetter').classList.remove('hidden');
-        };
-
-        document.getElementById('continueButton').onclick = () => {
-            const letter = document.getElementById('letter').innerText;
-            localStorage.setItem('randomLetter', letter);
-            window.location.href = 'game.html';
-        };
-
-        function getRandomLetter() {
-            const letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".split('');
-            return letters[Math.floor(Math.random() * letters.length)];
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
