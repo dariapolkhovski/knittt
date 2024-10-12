@@ -35,7 +35,7 @@ const categories = [
     "Птицы",
     "Рыбы",
     "Цветы",
-    "Части человеческого тело",
+    "Части человеческого тела",
     "Элементы периодической таблицы",
     "Музыкальные инструменты",
     "Актеры и актрисы",
@@ -61,7 +61,7 @@ const categories = [
     "Слова с удвоенными согласными",
     "Виды спорта",
     "Вещи в ванной",
-    "Вещи которые вещают на стену",
+    "Вещи которые висят на стене",
     "Вещи которые кладут в карман",
     "Вещи, которые обычно зеленые",
     "Вещи, которые обычно красные",
@@ -97,22 +97,21 @@ function getRandomLetter() {
 function startGame() {
     // Очистка предыдущего результата
     document.getElementById('category-list').innerHTML = '';
-    document.getElementById('answers-list').innerHTML = ''; // Очистка списка ответов
-    
+    const answerFields = document.getElementById('answer-fields');
+    answerFields.innerHTML = ''; // Очистка предыдущих ответов
+
     // Получаем случайные категории
     const randomCategories = getRandomCategories();
     randomCategories.forEach((category, index) => {
         const li = document.createElement('li');
         li.textContent = category;
         document.getElementById('category-list').appendChild(li);
-        
-        // Создаем поле для ответов
-        const answerLi = document.createElement('li');
+
+        // Создаем поле для ответа
         const answerInput = document.createElement('input');
-        answerInput.type = 'text';
-        answerInput.placeholder = Ответ для "${category}";
-        answerLi.appendChild(answerInput);
-        document.getElementById('answers-list').appendChild(answerLi);
+        answerInput.placeholder = Ответ для категории ${index + 1};
+        answerInput.setAttribute('data-category', category);
+        answerFields.appendChild(answerInput);
     });
 
     // Получаем случайную букву
