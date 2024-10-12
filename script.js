@@ -24,7 +24,18 @@ let categories = [
 ];
 
 let possibleAnswers = {
-    // Fill this with your answers for each category and letter
+    // Fill this object with answers for each category and letter
+    "Напитки": {
+        "А": ["Айран", "Агуша"],
+        "Б": ["Боржоми", "Бира"],
+        // ...
+    },
+    "Популярная еда в России": {
+        "А": ["Азу", "Арбуз"],
+        "Б": ["Борщ", "Блины"],
+        // ...
+    },
+    // Add remaining categories and answers
 };
 
 let currentCategories = [];
