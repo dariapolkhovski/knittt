@@ -2,26 +2,58 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
+#startArea {
     text-align: center;
+}
+
+#gameArea {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
 }
 
 .hidden {
     display: none;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
+h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
 }
 
-#timer {
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#categories, #letter, #answers, #time {
     font-weight: bold;
-    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    #gameArea {
+        width: 90%;
+    }
 }
