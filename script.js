@@ -35,7 +35,7 @@ const categories = [
     "Птицы",
     "Рыбы",
     "Цветы",
-    "Части человеческого тело",
+    "Части человеческого тела",
     "Элементы периодической таблицы",
     "Музыкальные инструменты",
     "Актеры и актрисы",
@@ -61,8 +61,8 @@ const categories = [
     "Слова с удвоенными согласными",
     "Виды спорта",
     "Вещи в ванной",
-    "Вещи которые вещают на стену",
-    "Вещи которые кладут в карман",
+    "Вещи, которые вещают на стену",
+    "Вещи, которые кладут в карман",
     "Вещи, которые обычно зеленые",
     "Вещи, которые обычно красные",
     "Детские вещи",
@@ -97,8 +97,7 @@ function getRandomLetter() {
 function startGame() {
     // Очистка предыдущего результата
     document.getElementById('category-list').innerHTML = '';
-    const answersDiv = document.getElementById('answers');
-    answersDiv.innerHTML = ''; // Очистка предыдущих ответов
+    document.getElementById('answers-list').innerHTML = '';
     
     // Получаем случайные категории
     const randomCategories = getRandomCategories();
@@ -106,14 +105,20 @@ function startGame() {
         const li = document.createElement('li');
         li.textContent = category;
         document.getElementById('category-list').appendChild(li);
-
-        // Создаем поле для ответов
-        const answerField = document.createElement('div');
-        answerField.innerHTML = <strong>${index + 1}. ${category}</strong> <input type="text" placeholder="Ответ...">;
-        answersDiv.appendChild(answerField);
+        
+        // Создаем поле для ответа
+        const answerItem = document.createElement('li');
+        const answerInput = document.createElement('input');
+        answerInput.type = 'text';
+        answerInput.placeholder = 'Ответ';
+        answerItem.appendChild(answerInput);
+        document.getElementById('answers-list').appendChild(answerItem);
     });
 
     // Получаем случайную букву
     const randomLetter = getRandomLetter();
     document.getElementById('random-letter').textContent = randomLetter;
+
+    // Показываем поле для ответов
+    document.getElementById('answers-section').style.display = 'block';
 }
