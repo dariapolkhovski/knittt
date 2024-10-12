@@ -35,7 +35,7 @@ const categories = [
     "Птицы",
     "Рыбы",
     "Цветы",
-    "Части человеческого тела",
+    "Части человеческого тело",
     "Элементы периодической таблицы",
     "Музыкальные инструменты",
     "Актеры и актрисы",
@@ -61,8 +61,8 @@ const categories = [
     "Слова с удвоенными согласными",
     "Виды спорта",
     "Вещи в ванной",
-    "Вещи, которые вещают на стену",
-    "Вещи, которые кладут в карман",
+    "Вещи которые вещают на стену",
+    "Вещи которые кладут в карман",
     "Вещи, которые обычно зеленые",
     "Вещи, которые обычно красные",
     "Детские вещи",
@@ -97,7 +97,7 @@ function getRandomLetter() {
 function startGame() {
     // Очистка предыдущего результата
     document.getElementById('category-list').innerHTML = '';
-    document.getElementById('answers-list').innerHTML = '';
+    document.getElementById('answers-list').innerHTML = ''; // Очистка списка ответов
     
     // Получаем случайные категории
     const randomCategories = getRandomCategories();
@@ -106,19 +106,16 @@ function startGame() {
         li.textContent = category;
         document.getElementById('category-list').appendChild(li);
         
-        // Создаем поле для ответа
-        const answerItem = document.createElement('li');
+        // Создаем поле для ответов
+        const answerLi = document.createElement('li');
         const answerInput = document.createElement('input');
         answerInput.type = 'text';
-        answerInput.placeholder = 'Ответ';
-        answerItem.appendChild(answerInput);
-        document.getElementById('answers-list').appendChild(answerItem);
+        answerInput.placeholder = Ответ для "${category}";
+        answerLi.appendChild(answerInput);
+        document.getElementById('answers-list').appendChild(answerLi);
     });
 
     // Получаем случайную букву
     const randomLetter = getRandomLetter();
     document.getElementById('random-letter').textContent = randomLetter;
-
-    // Показываем поле для ответов
-    document.getElementById('answers-section').style.display = 'block';
 }
