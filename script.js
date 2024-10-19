@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const rowElement = document.getElementById('currentRow');
     const stitchElement = document.getElementById('currentStitch');
-    const patternInput = document.getElementById('patternInput');
-    const patternImage = document.getElementById('patternImage');
     const patternText = document.getElementById('patternText');
 
     // Load saved progress
@@ -13,18 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load saved pattern text
     patternText.value = localStorage.getItem('patternText') || '';
-
-    // Load pattern image
-    patternInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                patternImage.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
 
     // Handle text input change
     patternText.addEventListener('input', () => {
