@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра с категориями</title>
+    <title>Knitting Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="container">
-    <h1>Игра с категориями</h1>
-    <p>Нажми кнопку, чтобы выбрать случайную букву и категории!</p>
-    <button class="button" onclick="startGame()">Начать игру</button>
-    
-    <div class="output">
-        <p><strong>Категории:</strong></p>
-        <ul id="category-list"></ul>
-        <p><strong>Буква:</strong> <span id="random-letter"></span></p>
+    <h1>Knitting Tracker</h1>
+    <input type="file" id="patternInput" accept="image/*">
+    <div id="patternContainer">
+        <img id="patternImage" alt="Knitting Pattern">
     </div>
-
-    <div class="answers">
-        <p><strong>Ответы:</strong></p>
-        <ol id="answer-list"></ol>
+    <div class="counter">
+        <p>Row: <span id="currentRow">0</span></p>
+        <p>Stitch: <span id="currentStitch">0</span></p>
     </div>
-</div>
-
-<script="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
