@@ -4,13 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const patternText = document.getElementById('patternText');
 
     // Load saved progress
-    let currentRow = parseInt(localStorage.getItem('currentRow')) || 0;
-    let currentStitch = parseInt(localStorage.getItem('currentStitch')) || 0;
+    let currentRow = parseInt(localStorage.getItem('currentRow'), 10) || 0;
+    let currentStitch = parseInt(localStorage.getItem('currentStitch'), 10) || 0;
     rowElement.textContent = currentRow;
     stitchElement.textContent = currentStitch;
 
     // Load saved pattern text
-    patternText.value = localStorage.getItem('patternText') || '';
+    const savedPatternText = localStorage.getItem('patternText');
+    if (savedPatternText !== null) {
+        patternText.value = savedPatternText;
+    } else {
+        patternText.value = '';
+    }
 
     // Handle text input change
     patternText.addEventListener('input', () => {
