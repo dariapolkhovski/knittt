@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+}
+
+#patternContainer {
+    margin-top: 20px;
+}
+
+#patternImage {
+    max-width: 90%;
+    height: auto;
+}
+
+.counter {
+    margin-top: 20px;
+}
