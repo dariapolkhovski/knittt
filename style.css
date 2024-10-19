@@ -17,6 +17,14 @@ h1 {
     height: auto;
 }
 
+#patternText {
+    width: 80%;
+    height: 150px;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+}
+
 .counter {
     margin-top: 20px;
 }
