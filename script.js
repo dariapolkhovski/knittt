@@ -3,12 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const stitchElement = document.getElementById('currentStitch');
     const patternInput = document.getElementById('patternInput');
     const patternImage = document.getElementById('patternImage');
+    const patternText = document.getElementById('patternText');
 
     // Load saved progress
     let currentRow = parseInt(localStorage.getItem('currentRow')) || 0;
     let currentStitch = parseInt(localStorage.getItem('currentStitch')) || 0;
     rowElement.textContent = currentRow;
     stitchElement.textContent = currentStitch;
+
+    // Load saved pattern text
+    patternText.value = localStorage.getItem('patternText') || '';
 
     // Load pattern image
     patternInput.addEventListener('change', (event) => {
@@ -20,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             reader.readAsDataURL(file);
         }
+    });
+
+    // Handle text input change
+    patternText.addEventListener('input', () => {
+        localStorage.setItem('patternText', patternText.value);
     });
 
     // Handle keyboard input
